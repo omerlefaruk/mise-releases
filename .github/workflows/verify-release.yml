@@ -1,0 +1,69 @@
+name: Verify Windows release draft
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Stable draft tag to verify
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.repository == 'omerlefaruk/mise-releases'
+    runs-on: windows-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.tag }}
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.18.1'
+      - name: Download the selected draft installer and verify its checksum
+        shell: pwsh
+        run: |
+          if ($env:RELEASE_TAG -notmatch '^v\d+\.\d+\.\d+$') { throw 'Expected a stable release tag.' }
+          $version = $env:RELEASE_TAG.Substring(1)
+          $download = Join-Path $env:RUNNER_TEMP 'mise-draft'
+          New-Item -ItemType Directory -Path $download -Force | Out-Null
+          gh release download $env:RELEASE_TAG --repo $env:GITHUB_REPOSITORY --pattern "Mise-Setup-$version-x64.exe" --pattern 'SHA256SUMS.txt' --dir $download
+          if ($LASTEXITCODE -ne 0) { throw 'Draft download failed.' }
+          $installer = Join-Path $download "Mise-Setup-$version-x64.exe"
+          $actual = (Get-FileHash -LiteralPath $installer -Algorithm SHA256).Hash.ToLowerInvariant()
+          $expected = Get-Content (Join-Path $download 'SHA256SUMS.txt') | Where-Object { $_ -match ('^[a-f0-9]{64}  ' + [regex]::Escape("Mise-Setup-$version-x64.exe") + '$') }
+          if (@($expected).Count -ne 1 -or $expected.Substring(0,64) -ne $actual) { throw 'Installer SHA-256 mismatch.' }
+          "MISE_DRAFT_INSTALLER=$installer" >> $env:GITHUB_ENV
+      - name: Extract only the bundled real-app control driver
+        shell: pwsh
+        run: |
+          $sevenZip = 'C:\Program Files\7-Zip\7z.exe'
+          if (-not (Test-Path -LiteralPath $sevenZip)) { throw 'The Windows runner must provide 7-Zip.' }
+          $bootstrap = Join-Path $env:RUNNER_TEMP 'mise-extract'
+          & $sevenZip x $env:MISE_DRAFT_INSTALLER "-o$bootstrap" -y | Out-Null
+          if ($LASTEXITCODE -ne 0) { throw 'Installer archive extraction failed.' }
+          $payload = @(Get-ChildItem $bootstrap -Recurse -Filter 'app-64.7z')
+          if ($payload.Count -ne 1) { throw 'Expected exactly one x64 application payload.' }
+          $unpacked = Join-Path $env:RUNNER_TEMP 'mise-unpacked'
+          & $sevenZip x $payload[0].FullName "-o$unpacked" -y | Out-Null
+          if ($LASTEXITCODE -ne 0) { throw 'Application payload extraction failed.' }
+          $driver = Join-Path $env:RUNNER_TEMP 'mise-control'
+          New-Item -ItemType Directory -Path $driver -Force | Out-Null
+          Copy-Item -LiteralPath (Join-Path $unpacked 'resources\bundle\app\scripts\verify-desktop.mjs') -Destination (Join-Path $driver 'verify-desktop.mjs')
+          npm install --prefix $driver --no-save --ignore-scripts --no-audit --no-fund @modelcontextprotocol/sdk@1.32.1 playwright@1.63.0
+          if ($LASTEXITCODE -ne 0) { throw 'Control-driver dependencies could not be installed.' }
+          "MISE_CONTROL=$driver" >> $env:GITHUB_ENV
+      - name: Exercise real per-user install, app, MCP and uninstall
+        shell: pwsh
+        run: |
+          node (Join-Path $env:MISE_CONTROL 'verify-desktop.mjs') --installer $env:MISE_DRAFT_INSTALLER --out "$env:RUNNER_TEMP\mise-release-proof"
+          if ($LASTEXITCODE -ne 0) { throw 'Installed application verification failed.' }
+      - name: Retain synthetic release verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mise-release-proof
+          path: |
+            ${{ runner.temp }}/mise-release-proof/proof.json
+            ${{ runner.temp }}/mise-release-proof/diagnostics.json
+            ${{ runner.temp }}/mise-release-proof/*.png
+          if-no-files-found: warn
