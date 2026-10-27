@@ -1,0 +1,34 @@
+name: Build media runtime
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install cross-compilation tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential gcc-mingw-w64-x86-64-posix g++-mingw-w64-x86-64-posix mingw-w64-tools cmake ninja-build meson nasm pkg-config python3 curl git perl autoconf automake libtool gettext gperf zip xz-utils bison flex
+      - name: Build the pinned media runtime and matching source distribution
+        id: build
+        run: |
+          recipe=app/desktop/media
+          if test -f media/build.sh; then recipe=media; fi
+          bash "$recipe/build.sh"
+          echo "dist=$recipe/dist" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ffmpeg-8.1.3-mise-win64-and-sources
+          path: ${{ steps.build.outputs.dist }}/*
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 14
