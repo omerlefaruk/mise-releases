@@ -6,7 +6,7 @@ Official download and stable-update repository for Mise. The application source 
 
 Visit https://omerlefaruk.github.io/mise-releases/ or browse https://github.com/omerlefaruk/mise-releases/releases.
 
-The first public installer is being prepared. Draft releases are not public downloads. A download becomes available only after the required installer verification and redistribution review.
+The download page follows the latest published stable release. Draft releases are not public downloads. A download becomes available only after the required installer verification and redistribution review.
 
 Mise requires Windows 10 or later on a 64-bit PC. The installer is unsigned, so Windows may display a warning. Only obtain installers from this repository. Verify the published checksums and never disable Windows security or antivirus.
 
@@ -28,4 +28,4 @@ Use this repository's issue tracker for non-sensitive installation and update qu
 
 ## Distribution status
 
-Application distribution terms, publisher details and corresponding-source arrangements for bundled third-party software must be completed before the first public binary release. Do not redistribute an unpublished draft as a reviewed public release.
+Each public binary release requires installer verification and publisher confirmation of the distribution terms, support details and corresponding-source arrangements for bundled third-party software. An unpublished draft has not completed that publication gate.
