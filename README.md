@@ -12,7 +12,7 @@ Mise needs Windows 10 or later on a 64-bit PC.
 
 ## Use
 
-Mise runs in the background on your PC and starts when you sign in to Windows. You use it in your browser at https://api.misecloud.cloud. Claude Code, Codex, Claude Desktop and Pi on the PC connect to Mise automatically. The `mise` command is available in a new terminal.
+Mise runs in the background on your PC and starts when you sign in to Windows. You use it in your browser at https://misecloud.cloud. Claude Code, Codex, Claude Desktop and Pi on the PC connect to Mise automatically. The `mise` command is available in a new terminal.
 
 Your projects and media stay on your PC. Mise cloud keeps your account and linked PCs, and passes requests between your browser or AI tools and your PC. Read https://omerlefaruk.github.io/mise-releases/privacy.html before you send sensitive content to an external provider.
 
