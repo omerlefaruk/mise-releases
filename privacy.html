@@ -12,18 +12,22 @@
     <header><a class="brand" href="./">Mise<span>Windows</span></a><a href="./">Back to downloads</a></header>
     <article class="privacy">
       <h1>Privacy and storage</h1>
-      <h2>Your projects stay on your computer</h2>
-      <p>Mise stores projects, media and settings outside its installation. Updating or uninstalling the application does not delete that data. Keep independent backups of your original media and project folder.</p>
-      <h2>AI providers and agents</h2>
-      <p>When you request an AI operation, the selected content may be sent to the provider or agent service you choose. This can include prompts, screenplay, images, audio and video. Your account and that service’s terms apply. Mise does not include a provider subscription or bypass your agent client’s permissions.</p>
+      <h2>Your projects stay on your PC</h2>
+      <p>Mise stores projects, media, provider keys and settings in the .mise folder of your Windows profile. Updates and uninstall do not delete that data. Keep your own backups of your original media and project folder.</p>
+      <h2>Mise cloud</h2>
+      <p>Mise cloud at misecloud.cloud keeps your account email, a hash of your password, your sign-in sessions, your linked PCs and the access tokens of your AI tools. It does not keep your projects, media or provider keys.</p>
+      <p>When you use Mise in your browser or through an AI tool, each request passes through Mise cloud to your PC, and the answer passes back. Mise cloud does not store that content. Pause a PC on your account page to stop all access to it, or remove it to unlink it.</p>
+      <h2>AI providers and AI tools</h2>
+      <p>When you request an AI operation, the selected content may be sent to the provider or AI tool you choose. This can include prompts, screenplay, images, audio and video. Your account and that service’s terms apply. Mise does not include a provider subscription or bypass your AI tool’s permissions.</p>
+      <p>Mise adds its entry to Claude Code, Codex, Claude Desktop and Pi when it finds them on your PC. It keeps all other settings in those tools, and it removes its entry when you uninstall Mise.</p>
       <h2>Updates and this website</h2>
-      <p>This website is hosted by GitHub Pages and reads public release information from GitHub’s API. It includes no analytics or advertising scripts. GitHub necessarily receives ordinary connection information, including your IP address, when you visit or download. Its own privacy policy applies to those requests.</p>
-      <p>The desktop application can check GitHub Releases for stable updates and download them when enabled. Installation requires your confirmation and an idle workspace. Automatic checks can be disabled. Both the application and its update feed are unsigned; checksum checks do not authenticate a publisher.</p>
-      <h2>Diagnostics and agent setup</h2>
-      <p>There is no automatic analytics or crash upload. Diagnostics are exported locally only when you request them and exclude project content and credentials. Optional agent setup asks before changing client settings and preserves unrelated entries and customized skills. Reload the client after setup or an update.</p>
+      <p>Mise checks GitHub Releases for updates every few hours and installs a new version when no work is running. If a new version does not start correctly, Mise goes back to the previous one. The installer and the update files are unsigned; checksum checks find damaged files, but they do not prove the publisher.</p>
+      <p>This website includes no analytics or advertising scripts. It reads public release information from GitHub’s API, so GitHub receives ordinary connection information, including your IP address. GitHub’s privacy policy applies to those requests and to downloads.</p>
+      <h2>Diagnostics</h2>
+      <p>There is no automatic analytics or crash upload. Mise writes its logs to the .mise folder on your PC only.</p>
       <h2>Third-party software</h2>
-      <p>The installation contains separate Electron, Chromium, Node, FFmpeg, JavaScript and font notices. These components retain their own licenses; no ownership over them is claimed. The separate FFmpeg tools are GPLv3-or-later. Their exact matching source inputs, notices and rebuild instructions accompany each installer in the <a href="https://github.com/omerlefaruk/mise-releases/releases">release assets</a>. Mise’s application source remains private.</p>
-      <p>The publisher account is <a href="https://github.com/omerlefaruk">omerlefaruk</a>. Downloads are provided through this account’s public release repository; this does not represent a verified Windows publisher signature.</p>
+      <p>The installer contains Node.js with its license. Mise downloads FFmpeg from its publisher and does not redistribute it. Earlier FFmpeg distributions and their matching sources remain available in an <a href="https://github.com/omerlefaruk/mise-releases/releases/tag/v0.0.3">earlier release</a>. These components keep their own licenses; no ownership over them is claimed. Mise’s application source is private.</p>
+      <p>The publisher account is <a href="https://github.com/omerlefaruk">omerlefaruk</a>. Downloads come from this account’s public release repository; this is not a verified Windows publisher signature.</p>
       <h2>Questions</h2>
       <p>Use the <a href="https://github.com/omerlefaruk/mise-releases/issues">support tracker</a> for non-sensitive questions. Do not attach credentials, private screenplay, personal images or other sensitive material to a public issue.</p>
     </article>

@@ -1,31 +1,31 @@
 # Mise for Windows
 
-Official download and stable-update repository for Mise. The application source repository is maintained separately and remains private.
+Official download and update repository for Mise. The application source repository is separate and private.
 
-## Downloads
+## Install
 
-Visit https://omerlefaruk.github.io/mise-releases/ or browse https://github.com/omerlefaruk/mise-releases/releases.
+1. Download `Mise-Setup-<version>.exe` from https://misecloud.cloud, https://omerlefaruk.github.io/mise-releases/ or the latest release at https://github.com/omerlefaruk/mise-releases/releases/latest.
+2. Run it. No admin rights are needed. Mise is unsigned, so Windows may show "Windows protected your PC". Click More info, then Run anyway. Get Mise only from these locations, and never turn off Windows security or antivirus.
+3. Your browser opens. Sign in to your Mise account and approve the PC. Sign-up needs an invite code.
 
-The download page follows the latest published stable release. Draft releases are not public downloads. A download becomes available only after the required installer verification and redistribution review.
+Mise needs Windows 10 or later on a 64-bit PC.
 
-Mise requires Windows 10 or later on a 64-bit PC. The installer is unsigned, so Windows may display a warning. Only obtain installers from this repository. Verify the published checksums and never disable Windows security or antivirus.
+## Use
+
+Mise runs in the background on your PC and starts when you sign in to Windows. You use it in your browser at https://api.misecloud.cloud. Claude Code, Codex, Claude Desktop and Pi on the PC connect to Mise automatically. The `mise` command is available in a new terminal.
+
+Your projects and media stay on your PC. Mise cloud keeps your account and linked PCs, and passes requests between your browser or AI tools and your PC. Read https://omerlefaruk.github.io/mise-releases/privacy.html before you send sensitive content to an external provider.
 
 ## Updates
 
-Public releases include the Windows installer, its blockmap and latest.yml for the in-app stable update feed. A checksums file accompanies the assets. The download page follows the latest published stable release automatically.
+Each release has the installer, `mise-service.json`, the app archive and the packages archive. Installed Mise reads `mise-service.json` from the latest release every few hours, checks each file by SHA-256 and switches to the new version when no work is running. If the new version does not start correctly, Mise goes back to the previous one. The files are unsigned; checksums find damaged files but do not prove the publisher.
 
-Once a host-configured installer has been installed, Mise can check and download newer stable releases. It asks before restarting and refuses installation while work is active. Updates do not delete projects or media. Older preview installers built without this update host need one manual reinstall before automatic updates are available.
+Releases up to 0.0.13 are the older desktop application. It does not update to 0.1.0 by itself. Uninstall the older app first, then install 0.1.0 with the installer. Your projects are kept.
 
-The application and feed are unsigned. Checksums detect corruption relative to the release host; they do not authenticate an unsigned publisher or protect against compromise of that host.
+## Uninstall
 
-## Accounts and storage
-
-Your projects and media stay on your computer. AI generation requires your own provider account or supported agent client. Optional tools and subscriptions are not included. Read https://omerlefaruk.github.io/mise-releases/privacy.html before submitting sensitive content to an external provider.
+Open Settings › Apps › Installed apps › Mise › Uninstall. Your projects and settings in the `.mise` folder are kept.
 
 ## Support
 
 Use this repository's issue tracker for non-sensitive installation and update questions. Never post credentials, private project content or personal reference media in a public issue.
-
-## Distribution status
-
-Each public binary release requires installer verification and publisher confirmation of the distribution terms, support details and corresponding-source arrangements for bundled third-party software. An unpublished draft has not completed that publication gate.

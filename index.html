@@ -3,37 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Download Mise for Windows. A local film workspace for stories, references, shots and cuts.">
+  <meta name="description" content="Download Mise for Windows. A film workspace for stories, references, shots and cuts that you use in your browser.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src https://api.github.com; base-uri 'none'; form-action 'none'">
-  <title>Mise — Windows downloads</title>
+  <title>Mise — Download for Windows</title>
   <link rel="stylesheet" href="style.css">
   <script src="downloads.js" defer></script>
 </head>
 <body>
   <main>
-    <header><a class="brand" href="./">Mise<span>Windows</span></a><a href="https://github.com/omerlefaruk/mise-releases/releases">All releases ↗</a></header>
+    <header><a class="brand" href="./">Mise<span>Windows</span></a><a href="https://api.misecloud.cloud/login">Sign in ↗</a></header>
     <section class="hero" aria-labelledby="title">
       <p class="eyebrow">Your film workspace</p>
       <h1 id="title">From the first idea<br>to the final cut.</h1>
-      <p class="intro">Stories, screenplay, references, shots and edits in one workspace. Your projects and media stay on your computer.</p>
+      <p class="intro">Stories, screenplay, references, shots and edits in one workspace. You use Mise in your browser. Your projects and media stay on your PC.</p>
       <div class="download">
-        <a id="download" class="button" href="https://github.com/omerlefaruk/mise-releases/releases">View Windows releases</a>
-        <p id="release-status" role="status">Checking for a public release…</p>
+        <a id="download" class="button" href="https://github.com/omerlefaruk/mise-releases/releases/latest">Download Mise for Windows</a>
+        <p id="release-status" role="status">Checking for the latest release…</p>
       </div>
-      <p class="requirements">Windows 10 or later · 64-bit · unsigned installer</p>
+      <p class="requirements">Windows 10 or later · 64-bit · no admin rights needed · unsigned installer</p>
     </section>
-    <section class="features" aria-label="About the desktop application">
-      <article><h2>Install once</h2><p>The core runtime and media tools are included. No development checkout or terminal setup is required.</p></article>
-      <article><h2>Keep your work</h2><p>Projects and media live outside the installation. Updates and uninstall preserve them.</p></article>
-      <article><h2>Stay current</h2><p>Stable updates download inside Mise when enabled. You choose when to restart, after active work finishes.</p></article>
+    <section class="features" aria-label="How to start">
+      <article><h2>1. Install</h2><p>Run Mise-Setup. If Windows says “Windows protected your PC”, click More info, then Run anyway.</p></article>
+      <article><h2>2. Sign in</h2><p>Your browser opens. Sign in to your Mise account and approve this PC. Sign-up needs an invite code.</p></article>
+      <article><h2>3. Work</h2><p>Open Mise from the Start menu or at misecloud.cloud. Claude Code, Codex, Claude Desktop and Pi connect to Mise automatically.</p></article>
     </section>
     <section class="notice" aria-labelledby="before-installing">
-      <h2 id="before-installing">Before installing</h2>
+      <h2 id="before-installing">Good to know</h2>
       <ul>
-        <li>Mise is unsigned. Windows may display a warning. Verify the publisher’s download location and published checksums; never disable Windows security or antivirus.</li>
-        <li>AI generation requires your own provider account or supported agent client. Subscriptions, local models and specialist tools are not included.</li>
-        <li>The update feed is unsigned too. Checksums detect corruption relative to the host, not a compromised publisher or host.</li>
-        <li>The separate FFmpeg tools are GPLv3-or-later. Their <a id="media-source" href="https://github.com/omerlefaruk/mise-releases/releases">matching sources, notices and rebuild instructions</a> accompany each installer release.</li>
+        <li>Mise runs in the background on your PC and starts when you sign in to Windows. It updates itself when no work is running. Your projects are kept through updates and uninstall.</li>
+        <li>The browser and your AI tools reach your PC through Mise cloud. Mise cloud keeps your account and your linked PCs, not your projects or media. Pause a PC on your account page to stop all access to it.</li>
+        <li>Mise is unsigned. Get it only from this page or the <a href="https://github.com/omerlefaruk/mise-releases/releases">release list</a>, and never turn off Windows security or antivirus.</li>
+        <li>AI generation needs your own provider account or AI tool. Subscriptions, local models and specialist tools are not included. Mise downloads FFmpeg from its publisher on first start.</li>
+        <li>If you have the older Mise desktop app (0.0.13 or earlier), uninstall it first. Your projects are kept.</li>
+        <li>To remove Mise, open Settings › Apps › Installed apps › Mise › Uninstall.</li>
       </ul>
     </section>
     <footer><span>Mise downloads</span><nav aria-label="Support and information"><a href="privacy.html">Privacy and storage</a><a href="https://github.com/omerlefaruk/mise-releases/issues">Support</a><a href="https://github.com/omerlefaruk/mise-releases">Download repository</a></nav></footer>
